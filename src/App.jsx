@@ -1,3 +1,4 @@
+import Demo from './Demo'
 import Navbar from './components/Navbar'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -6,6 +7,9 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
+        <Routes>
+          <Route path='/' exact element={<Demo />}/>
+        </Routes>
       </BrowserRouter>
     </>
   )

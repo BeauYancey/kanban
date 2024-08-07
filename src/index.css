@@ -3,12 +3,14 @@
   --olive: #3F4739;
   --light-olive: #65715B;
   --dark-olive: #33392D;
+  --white: #FAFAFA;
   --ivory: #F2F5EA;
 }
 
 body {
   margin: 0;
-  background-color: var(--ivory);
+  background-color: var(--white);
+  color: var(--olive);
 }
 
 nav {
@@ -17,10 +19,32 @@ nav {
   align-items: center;
   padding-left: 2em;
   background-color: var(--olive);
-  color: var(--ivory);
+  color: var(--white);
+}
+
+main {
+  padding: 0 10vw;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.section-titles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--dark-olive);
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1em;
 }
