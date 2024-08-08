@@ -5,16 +5,19 @@ export default function Lane({story, status, setBoard}) {
 	function updateTaskStatus(storyId, taskId, newStatus) {
 		console.log(newStatus)
 		setBoard((prevBoard) => {
-			return prevBoard.map((story) => {
-				if (story.id === storyId) {
-					return {
-						...story,
-						tasks: story.tasks.map((task) => taskId === task.id ? { ...task, status: newStatus } : task)
-					};
-				}
-				return story;
-			});
-		});	
+			return {
+				title: prevBoard.title,
+				stories: prevBoard.stories.map((story) => {
+					if (story.id === storyId) {
+						return {
+							...story,
+							tasks: story.tasks.map((task) => taskId === task.id ? { ...task, status: newStatus } : task)
+						};
+					}
+					return story;
+				})
+			}
+		});
 	}
 
 	function handleDragOver(e) {
