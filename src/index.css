@@ -22,6 +22,39 @@ nav {
   color: var(--white);
 }
 
+.nav-drop {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-drop-content {
+  position: absolute;
+  visibility: hidden;
+  left: -1em;
+  min-width: 160px;
+  z-index: 1;
+  background-color: var(--olive);
+  padding: 0 1em 1em 1em;
+  border-radius: 0 0 .5em .5em;
+}
+
+.nav-drop:hover .nav-drop-content {
+  visibility: visible;
+}
+
+.btn {
+  padding: .5em .5em;
+  font-family: inherit;
+  background-color: var(--white);
+  box-shadow: none;
+  border: 0;
+  border-radius: .25em;
+}
+
+.btn h3 {
+  margin: 0
+}
+
 main {
   padding: 0 10vw;
 }
