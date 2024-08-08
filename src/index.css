@@ -30,25 +30,35 @@ nav {
 .nav-drop-content {
   position: absolute;
   visibility: hidden;
+  opacity: 0;
   left: -1em;
   min-width: 160px;
   z-index: 1;
   background-color: var(--olive);
   padding: 0 1em 1em 1em;
   border-radius: 0 0 .5em .5em;
+  transition: all .25s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .nav-drop:hover .nav-drop-content {
   visibility: visible;
+  opacity: 1;
+  transition: all .25s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .btn {
-  padding: .5em .5em;
+  padding: .75em;
   font-family: inherit;
   background-color: var(--white);
   box-shadow: none;
   border: 0;
-  border-radius: .25em;
+  border-radius: .5em;
+  cursor: pointer
+}
+
+.btn-olive {
+  background-color: var(--olive);
+  color: var(--white)
 }
 
 .btn h3 {
@@ -114,4 +124,44 @@ a {
 
 .card > h4 {
   text-align: center;
+}
+
+.login-form {
+  max-width: 32em;
+  border: 1px solid black;
+  border-radius: 1em;
+  margin-top: 4em;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+
+.tab {
+  padding: 0 2em;
+  cursor: pointer;
+}
+
+.tab.selected {
+  background-color: var(--olive);
+  color: var(--white)
+}
+
+.login-form-option {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  align-items: center;
+  gap: 1em
+}
+
+.login-form-option > input {
+  padding: .375em .75em;
+  font-size: 1em;
+  line-height: 1.5em;
+  border-radius: .375em;
+  border: 1px solid lightgrey;
+  width: 80%;
 }

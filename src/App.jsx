@@ -1,14 +1,20 @@
-import Demo from './Demo'
-import Navbar from './components/Navbar'
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar'
+import Demo from './Demo'
+import Login from './Login'
 
 function App() {
+
+  const [authState, setAuthState] = useState(false)
+
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar authState={authState}/>
         <Routes>
-          <Route path='/' exact element={<Demo />}/>
+          <Route path='/' exact element={<Demo />} />
+          <Route path='/login' element={<Login setAuthState={setAuthState} />} />
         </Routes>
       </BrowserRouter>
     </>
