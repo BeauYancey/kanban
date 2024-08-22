@@ -8,6 +8,11 @@ export default function Login({setAuthState}) {
 	const [password, setPassword] = useState('')
 	const [confirm, setConfirm] = useState('')
 
+	function switchTab(tab) {
+		setTab(tab)
+		setError('')
+	}
+
 	async function postData(endpoint) {
 		const res = await fetch(endpoint, {
 			method: 'POST',
@@ -19,26 +24,33 @@ export default function Login({setAuthState}) {
 		if (res?.ok) {
 			setError('')
 			setAuthState(true)
+			return true
 		}
 		else {
 			try {
-				data = await res.json()
+				const data = await res.json()
 				setError(data.msg)
 			}
 			catch (e) {
+				console.log(e)
 				setError('server error')
 			}
 			setAuthState(false)
+			return false
 		}
 	}
 
 	async function login() {
-		await postData('/api/session')
+		if (await postData('/api/session')) {
+			window.location = '/'
+		}
 	}
 
 	async function create() {
 		if (password === confirm) {
-			await postData('/api/user')
+			if (await postData('/api/user')) {
+				window.location = '/'
+			}
 		}
 		else {
 			setError('passwords must match')
@@ -50,10 +62,10 @@ export default function Login({setAuthState}) {
 		<main style={{display: 'flex', justifyContent: 'center'}}>
 			<div className='login-form'>
 				<div className='tabs'>
-					<div className={tab === 'login' ? 'tab selected' : 'tab'} style={{borderRadius: '15px 0 0 0'}} onClick={() => setTab('login')}>
+					<div className={tab === 'login' ? 'tab selected' : 'tab'} style={{borderRadius: '15px 0 0 0'}} onClick={() => switchTab('login')}>
 						<h3>log in</h3>
 					</div>
-					<div className={tab === 'create' ? 'tab selected' : 'tab'} style={{borderRadius: '0 15px 0 0'}} onClick={() => setTab('create')}>
+					<div className={tab === 'create' ? 'tab selected' : 'tab'} style={{borderRadius: '0 15px 0 0'}} onClick={() => switchTab('create')}>
 						<h3>create account</h3>
 					</div>
 				</div>
