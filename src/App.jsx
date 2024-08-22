@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar authState={authState}/>
+        <Navbar authState={authState} setAuthState={setAuthState}/>
         <Routes>
           <Route path='/' exact element={<Demo />} />
           <Route path='/login' element={<Login setAuthState={setAuthState} />} />

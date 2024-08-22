@@ -1,11 +1,49 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 export default function Login({setAuthState}) {
 
 	const [tab, setTab] = useState('login')
+	const [error, setError] = useState('')
+	const [username, setUsername] = useState('')
+	const [password, setPassword] = useState('')
+	const [confirm, setConfirm] = useState('')
 
-	function login() {
-		setAuthState(true);
+	async function postData(endpoint) {
+		const res = await fetch(endpoint, {
+			method: 'POST',
+			body: JSON.stringify({username: username, password: password}),
+			headers: {
+				'Content-type': 'application/json; charset=UTF-8'
+			}
+		})
+		if (res?.ok) {
+			setError('')
+			setAuthState(true)
+		}
+		else {
+			try {
+				data = await res.json()
+				setError(data.msg)
+			}
+			catch (e) {
+				setError('server error')
+			}
+			setAuthState(false)
+		}
+	}
+
+	async function login() {
+		await postData('/api/session')
+	}
+
+	async function create() {
+		if (password === confirm) {
+			await postData('/api/user')
+		}
+		else {
+			setError('passwords must match')
+			setAuthState(false)
+		}
 	}
 
 	return (
@@ -21,32 +59,23 @@ export default function Login({setAuthState}) {
 				</div>
 				{tab === 'login' && 
 					<div className='login-form-option'>
-						<input
-							placeholder="username"
-							type='text'
-						/>
-						<input
-							placeholder="password"
-							type='password'
-						/>
+						<input placeholder='username' type='text' onChange={(e) => setUsername(e.target.value)} />
+						<input placeholder='password' type='password' onChange={(e) => setPassword(e.target.value)} />
+						{error &&
+							<div className='error'>{error}</div>
+						}
 						<button className='btn btn-olive' onClick={login}><h3>log in</h3></button>
 					</div>
 				}
 				{tab === 'create' && 
 					<div className='login-form-option'>
-						<input
-							placeholder="username"
-							type='text'
-						/>
-						<input
-							placeholder="password"
-							type='password'
-						/>
-						<input
-							placeholder="confirm password"
-							type='password'
-						/>
-						<button className='btn btn-olive' onClick={login}><h3>create account</h3></button>
+						<input placeholder='username' type='text' onChange={(e) => setUsername(e.target.value)} />
+						<input placeholder='password' type='password' onChange={(e) => setPassword(e.target.value)} />
+						<input placeholder='confirm password' type='password' onChange={(e) => setConfirm(e.target.value)} />
+						{error &&
+							<div className='error'>{error}</div>
+						}
+						<button className='btn btn-olive' onClick={create}><h3>create account</h3></button>
 					</div>
 				}
 			</div>
