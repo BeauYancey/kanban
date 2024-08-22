@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Demo from './Demo'
 import Login from './Login'
-import CreateBoard from './components/CreateBoard'
+import BoardList from './BoardList'
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path='/' exact element={<Demo />} />
           <Route path='/login' element={<Login setAuthState={setAuthState} />} />
-          <Route path='/create' element={<CreateBoard />}/>
+          <Route path='/boards' element={<BoardList />}/>
         </Routes>
       </BrowserRouter>
     </>
