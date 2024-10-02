@@ -6,16 +6,19 @@ export default function Navbar({authState, setAuthState}) {
 	const [boards, setBoards] = useState([])
 
 	useEffect(() => {
-		fetch('/api/boards')
-		.then(res => res.json())
-		.then(data => setBoards(data))
-	}, [])
+		if (authState) {
+			fetch('/api/boards')
+			.then(res => res.json())
+			.then(data => setBoards(data))
+		}
+	}, [authState])
 
 	async function logout() {
 		await fetch('/api/session', {
 			method: 'DELETE'
 		})
 		setAuthState(false)
+		window.location.assign('/')
 	}
 
 	return (

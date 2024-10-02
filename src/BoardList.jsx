@@ -23,7 +23,7 @@ export default function BoardList() {
 
 	useEffect(() => {
 		inputRef.current && inputRef.current.focus()
-	})
+	}, [showForm])
 
 	async function addBoard() {
 		const res = await fetch('/api/boards', {

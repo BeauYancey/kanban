@@ -113,12 +113,15 @@ a {
 }
 
 .card {
-  min-height: 4em;
+  min-height: 2em;
+  padding: 1em 0;
   border-radius: .25em;
   background-color: #65715B;
   color: var(--white);
   text-align: center;
   display: flex;
+  gap: .5em;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }

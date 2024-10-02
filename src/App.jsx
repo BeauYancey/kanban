@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Demo from './Demo'
 import Login from './Login'
 import BoardList from './BoardList'
+import Board from './Board'
 
 function App() {
 
@@ -23,7 +24,8 @@ function App() {
         <Routes>
           <Route path='/' exact element={<Demo />} />
           <Route path='/login' element={<Login setAuthState={setAuthState} />} />
-          <Route path='/boards' element={<BoardList />}/>
+          <Route path='/boards' element={<BoardList />} />
+          <Route path='/board/:id' element={<Board />} />
         </Routes>
       </BrowserRouter>
     </>

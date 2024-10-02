@@ -1,6 +1,6 @@
 import TaskCard from "./TaskCard"
 
-export default function Lane({story, status, setBoard}) {
+export default function Lane({story, status, setBoard, demo}) {
 
 	function updateTaskStatus(storyId, taskId, newStatus) {
 		console.log(newStatus)
@@ -18,6 +18,17 @@ export default function Lane({story, status, setBoard}) {
 				})
 			}
 		});
+		if (!demo) {
+			fetch(`/api/task/${taskId}?change=status`, {
+				method: 'PATCH',
+				body: JSON.stringify({status: newStatus}),
+				headers: {
+					'Content-type': 'application/json; charset=UTF-8'
+				}
+			})
+			.then(res => res.json())
+			.then(data => console.log(data))
+		}
 	}
 
 	function handleDragOver(e) {

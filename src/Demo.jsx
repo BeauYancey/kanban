@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import StoryRow from "./components/StoryRow"
 
 export default function Demo() {
@@ -9,7 +9,7 @@ export default function Demo() {
 			stories: 
 			[
 				{
-					story: 'CS 340',
+					title: 'CS 340',
 					id: 1,
 					tasks: [
 						{id: 1, title: 'HW1', status: 'done', assignee: 'test'},
@@ -18,7 +18,7 @@ export default function Demo() {
 					]
 				},
 				{
-					story: 'CS 356',
+					title: 'CS 356',
 					id: 2,
 					tasks: [
 						{id: 4, title: 'Quiz 1', status: 'doing', assignee: 'BeauYancey'},
@@ -27,7 +27,7 @@ export default function Demo() {
 					]
 				},
 				{
-					story: 'WRTG 316',
+					title: 'WRTG 316',
 					id: 3,
 					tasks: [
 						{id: 7, title: 'Reading 1', status: 'done', assignee: 'BeauYancey'},
@@ -52,7 +52,7 @@ export default function Demo() {
 			<div className='board'>
 				{
 					board.stories.map(story => (
-						<StoryRow story={story} key={story.id} setBoard={setBoard}/>
+						<StoryRow story={story} key={story.id} setBoard={setBoard} demo/>
 					))
 				}
 			</div>
